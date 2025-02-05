@@ -41,5 +41,55 @@ int WINAPI WinMain(
     // 창 생성에 사용할 클래스 이름 전달.
     wc.lpszClassName = className;
 
+    // 클래스 등록.
+    if (!RegisterClass(&wc))
+    {
+        // 오류 메세지 확인.
+        auto error = GetLastError();
+
+        // 메세지 출력.
+        // #1. 출력창 이용 (Output).
+        OutputDebugStringA("Failed to register a window class\n");
+        
+        // #2. 메세지 박스 이용
+        MessageBoxA(nullptr, "Failed to register a window class", "Error", MB_OK);
+
+        __debugbreak();
+    }
+
+    // 창 생성.
+    // HWND 창의 핸들 포인터 변수
+    HWND hwnd = CreateWindow(
+        className,                          // Window class
+        TEXT("Learn to Program Windows"),   // Window text
+        WS_OVERLAPPEDWINDOW,                // Window style
+
+        // Size and position (x, y, w, h)
+        CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
+
+        nullptr,       // Parent window    
+        nullptr,       // Menu
+        hInstance,  // Instance handle
+        nullptr        // Additional application data
+    );
+
+    if (hwnd == nullptr)
+    {
+        // 메세지 출력.
+        // #1. 출력창 이용 (Output).
+        OutputDebugStringA("Failed to create a window\n");
+
+        // #2. 메세지 박스 이용
+        MessageBoxA(nullptr, "Failed to create a window", "Error", MB_OK);
+
+        __debugbreak();
+    }
+
+    // 창 보이기.
+    ShowWindow(hwnd, SW_SHOW);
+
+    // 창 메세지 업데이트.
+    UpdateWindow(hwnd);
+
     return 0;
 }
