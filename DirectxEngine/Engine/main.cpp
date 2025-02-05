@@ -67,10 +67,10 @@ int WINAPI WinMain(
         // Size and position (x, y, w, h)
         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
 
-        nullptr,       // Parent window    
-        nullptr,       // Menu
-        hInstance,  // Instance handle
-        nullptr        // Additional application data
+        nullptr,        // Parent window    
+        nullptr,        // Menu
+        hInstance,      // Instance handle
+        nullptr         // Additional application data
     );
 
     if (hwnd == nullptr)
@@ -79,7 +79,7 @@ int WINAPI WinMain(
         // #1. 출력창 이용 (Output).
         OutputDebugStringA("Failed to create a window\n");
 
-        // #2. 메세지 박스 이용
+        // #2. 메세지 박스 이용.
         MessageBoxA(nullptr, "Failed to create a window", "Error", MB_OK);
 
         __debugbreak();
@@ -90,6 +90,26 @@ int WINAPI WinMain(
 
     // 창 메세지 업데이트.
     UpdateWindow(hwnd);
+
+    MSG msg = { };
+    while (msg.message != WM_QUIT) 
+    {
+        // 창에 메세지가 들어올 때 실행.
+        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) // GetMessage는 메세지가 들어올 때 까지 대기한다.
+        {
+            // 메세지 번역
+            TranslateMessage(&msg);
+
+            // 메세지 전달.
+            DispatchMessage(&msg);
+        }
+
+        // 창에 메세지가 없을 때 다른 작업 처리.
+        else
+        {
+            // 엔진 루프.
+        }
+    }
 
     return 0;
 }
