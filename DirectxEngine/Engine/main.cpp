@@ -1,5 +1,7 @@
 ﻿#include <Windows.h>
+
 #include "Core/Window.h"
+#include "Render/Renderer.h"
 
 using namespace DirectxEngine;
 
@@ -40,6 +42,9 @@ int WINAPI WinMain(
 {
     //  창 생성.
     Window window(1280, 800, TEXT("Directx Engine Demo"), hInstance, WindowProc);
+
+    // 렌더러 생성.
+    Renderer renderer(window.Width(), window.Height(), window.Handle());
 
     MSG msg = { };
     while (msg.message != WM_QUIT) 
