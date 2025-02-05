@@ -31,5 +31,19 @@ namespace DirectxEngine
 
         // 뷰포트.
         D3D11_VIEWPORT viewport;
+
+        // @Temp: 임시.
+        // 정점 버퍼 (정점 정보를 전달하는 데 사용함).
+        ID3D11Buffer* vertexBuffer = nullptr;
+
+        // 인덱스 버퍼 (정점을 조립할 때 정점의 순서를 전달).
+        ID3D11Buffer* indexBuffer = nullptr;
+
+        // 입력 레이아웃.
+        ID3D11InputLayout* inputLayout = nullptr;
+
+        // 쉐이더 객체.
+        ID3D11VertexShader* vertexShader = nullptr;
+        ID3D11PixelShader* pixelShader = nullptr;
     };
 }

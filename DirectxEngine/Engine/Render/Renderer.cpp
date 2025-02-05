@@ -1,5 +1,8 @@
 ﻿#include "Renderer.h"
 
+#include <vector>
+#include <d3dcompiler.h>
+
 namespace DirectxEngine
 {
     Renderer::Renderer(uint32 width, uint32 height, HWND window)
@@ -91,6 +94,58 @@ namespace DirectxEngine
 
         // 뷰포트 설정.
         context->RSSetViewports(1, &viewport);
+
+        // 정점 데이터 생성
+        float vertices[] =
+        {
+            0.0f, 0.5f, 0.5f,
+            0.5f, -0.5f, 0.5f,
+            -0.5f, -0.5f, 0.5f,
+        };
+
+        // @Temp: 임시 리소스 생성.
+        // 버퍼(Buffer) - 메모리 덩어리.
+        D3D11_BUFFER_DESC vertexBufferDesc = { };
+        vertexBufferDesc.ByteWidth = sizeof(float) * 3 * 3;
+        vertexBufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+        
+        // 정점 데이터.
+        D3D11_SUBRESOURCE_DATA vertexData = { };
+        vertexData.pSysMem = vertices;
+
+        // 버퍼 생성.
+        result = device->CreateBuffer(&vertexBufferDesc, &vertexData, &vertexBuffer);
+        if (FAILED(result))
+        {
+            MessageBoxA(nullptr, "Failed to create vertex buffer.", "Error", MB_OK);
+            __debugbreak();
+        }
+
+        // 인덱스(색인) 버퍼 생성 (정점을 조립하는 순서).
+        int indices[] = { 0, 1, 2 };
+
+        D3D11_BUFFER_DESC indexBufferDesc = { };
+        indexBufferDesc.ByteWidth = sizeof(int) * 3;
+        indexBufferDesc.BindFlags = D3D10_BIND_INDEX_BUFFER;
+
+        // 정점 데이터.
+        D3D11_SUBRESOURCE_DATA indexData = { };
+        indexData.pSysMem = indices;
+        
+        // 인덱스 버퍼 생성.
+        result = device->CreateBuffer(&indexBufferDesc, &indexData, &indexBuffer);
+        if (FAILED(result))
+        {
+            MessageBoxA(nullptr, "Failed to create index buffer.", "Error", MB_OK);
+            __debugbreak();
+        }
+
+        // 쉐이더 컴파일.
+        // 쉐이더 생성.
+
+
+        // 입력 레이아웃.
+        // 정점 쉐이더에 전달할 정점 데이터가 어떻게 생겼는지 알려줌.
     }
 
     Renderer::~Renderer()
