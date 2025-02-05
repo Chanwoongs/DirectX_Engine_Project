@@ -54,7 +54,7 @@ namespace DirectxEngine
             &context
         );
 
-        // 결과 확인
+        // 결과 확인.
         if (FAILED(result))
         {
             MessageBoxA(nullptr, "Failed to create devices.", "Error", MB_OK);
@@ -78,7 +78,7 @@ namespace DirectxEngine
             __debugbreak();
         }
 
-        // 렌더 타켓 뷰 바인딩 (연결).
+        // 렌더 타켓 뷰 바인딩 (연결). OM -> output merger, IA -> input assembler.
         context->OMSetRenderTargets(1, &renderTargetView, nullptr);
 
         // 뷰 포트 (화면).
@@ -107,6 +107,6 @@ namespace DirectxEngine
         // 드로우 (Draw, Render)
 
         // 버퍼 교환 (EndScene, Present).
-        swapChain->Present(1u, 0u);     // SyncInterval: 모니터 V-sync에 주사율 맞출 건지
+        swapChain->Present(1u, 0u);     // SyncInterval: 모니터 V-sync에 주사율 맞출 건지.
     }
 }
