@@ -15,6 +15,16 @@ WinMain(
 LRESULT CALLBACK WindowProc(HWND handle, UINT message, WPARAM wparam, LPARAM lparam)
 {
     // 메세지 처리.
+    switch (message)
+    {
+        // 창이 삭제되면 실행됨.
+    case WM_DESTROY:
+        // 이때 프로그램 종료 메세지를 발생.
+        PostQuitMessage(0);
+        return 0;
+    }
+
+    // 기본 메세지 처리.
     return DefWindowProc(handle, message, wparam, lparam);
 }
 
@@ -57,15 +67,21 @@ int WINAPI WinMain(
         __debugbreak();
     }
 
+    // 창 크기 설정
+    unsigned int positionX = 0;
+    unsigned int positionY = 0;
+    unsigned int width = 1280;
+    unsigned int height = 800;
+
     // 창 생성.
     // HWND 창의 핸들 포인터 변수
     HWND hwnd = CreateWindow(
         className,                          // Window class
-        TEXT("Learn to Program Windows"),   // Window text
+        TEXT("DirectX Engine Demo"),   // Window text
         WS_OVERLAPPEDWINDOW,                // Window style
 
         // Size and position (x, y, w, h)
-        CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
+        positionX, positionY, width, height,
 
         nullptr,        // Parent window    
         nullptr,        // Menu
