@@ -141,11 +141,65 @@ namespace DirectxEngine
         }
 
         // 쉐이더 컴파일.
-        // 쉐이더 생성.
+        ID3DBlob* vertexShaderBuffer = nullptr; // 임시로 저장할 버퍼.
+        result = D3DCompileFromFile(
+            TEXT("VertexShader.hlsl"),
+            nullptr,
+            nullptr,
+            "main",
+            "vs_5_0",
+            0, 0,
+            &vertexShaderBuffer,
+            nullptr
+        );
+        if (FAILED(result))
+        {
+            MessageBoxA(nullptr, "Failed to compile vertex shader.", "Error", MB_OK);
+            __debugbreak();
+        }
 
+        // 쉐이더 생성.
+        result = device->CreateVertexShader(
+            vertexShaderBuffer->GetBufferPointer(),
+            vertexShaderBuffer->GetBufferSize(),
+            nullptr,
+            &vertexShader
+        );
+        if (FAILED(result))
+        {
+            MessageBoxA(nullptr, "Failed to create vertex shader.", "Error", MB_OK);
+            __debugbreak();
+        }
 
         // 입력 레이아웃.
         // 정점 쉐이더에 전달할 정점 데이터가 어떻게 생겼는지 알려줌.
+        //LPCSTR SemanticName;
+        //UINT SemanticIndex;
+        //DXGI_FORMAT Format;
+        //UINT InputSlot;
+        //UINT AlignedByteOffset;
+        //D3D11_INPUT_CLASSIFICATION InputSlotClass;
+        //UINT InstanceDataStepRate;
+        D3D11_INPUT_ELEMENT_DESC inputDesc[] =
+        {
+            { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, 
+            D3D11_INPUT_PER_VERTEX_DATA, 0}
+        };
+        result = device->CreateInputLayout(
+            inputDesc,
+            1,
+            vertexShaderBuffer->GetBufferPointer(),
+            vertexShaderBuffer->GetBufferSize(),
+            &inputLayout
+        );
+        if (FAILED(result))
+        {
+            MessageBoxA(nullptr, "Failed to create input layout.", "Error", MB_OK);
+            __debugbreak();
+        }
+
+        // 픽셀 쉐이더, 컴파일, 생성.
+        // 각 리소스 바인딩.
     }
 
     Renderer::~Renderer()
