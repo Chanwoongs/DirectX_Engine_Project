@@ -65,6 +65,7 @@ namespace DirectxEngine
         }
 
         // 렌더 타겟 뷰 생성.
+        // I 가 붙은건 그래픽 카드와 실제 소통하는 객체들
         ID3D11Texture2D* backBuffer = nullptr;
         //swapChain->GetBuffer(0, __uuidof(backBuffer), reinterpret_cast<void**>(&backBuffer));
         result = swapChain->GetBuffer(0, IID_PPV_ARGS(&backBuffer));
@@ -126,7 +127,7 @@ namespace DirectxEngine
 
         D3D11_BUFFER_DESC indexBufferDesc = { };
         indexBufferDesc.ByteWidth = sizeof(int) * 3;
-        indexBufferDesc.BindFlags = D3D10_BIND_INDEX_BUFFER;
+        indexBufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
 
         // 정점 데이터.
         D3D11_SUBRESOURCE_DATA indexData = { };
