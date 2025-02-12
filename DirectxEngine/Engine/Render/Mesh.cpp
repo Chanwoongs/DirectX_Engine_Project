@@ -1,6 +1,7 @@
 ﻿#include "Mesh.h"
 
 #include "../Core/Engine.h"
+#include "../Shader/Shader.h"
 
 namespace DirectxEngine
 {
@@ -76,5 +77,23 @@ namespace DirectxEngine
         static uint32 offset = 0;
         context.IASetVertexBuffers(0, 1, &vertexBuffer, &stride, &offset);
         context.IASetIndexBuffer(indexBuffer, DXGI_FORMAT_R32_UINT, 0);
+    }
+
+    Mesh::Mesh()
+    {
+    }
+
+    void Mesh::Draw()
+    {
+        // 컨텍스트 얻어오기.
+        static auto& context = Engine::Get().Context();
+
+        // 루프 순회하면서 바인딩 & 드로우.
+        for (int i = 0; i < (int32)meshes.size(); i++)
+        {
+            meshes[i]->Bind();
+            shaders[i]->Bind();
+            context.DrawIndexed(meshes[i]->IndexCount(), 0, 0);
+        }
     }
 }

@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <d3d11.h>
+#include <memory>
 
 #include "../Core/Type.h"
 #include "Vertex.h"
@@ -35,9 +36,12 @@ namespace DirectxEngine
     {
     public:
         Mesh();
-        ~Mesh();
+        virtual ~Mesh() = default;
+
+        virtual void Draw();
 
     private:
-
+        std::vector<std::shared_ptr<MeshData>> meshes;
+        std::vector<std::shared_ptr<class Shader>> shaders;
     };
 }
