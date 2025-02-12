@@ -57,6 +57,16 @@ namespace DirectxEngine
 
     Vector2 Lerp(const Vector2& from, const Vector2& to, float t)
     {
+        // t 가두기.
+        if (t < 0.0f)
+        {
+            t = 0.0f;
+        }
+        if (t > 1.0f)
+        {
+            t = 1.0f;
+        }
+
         return (1.0f - t) * from + t * to;
     }
 
