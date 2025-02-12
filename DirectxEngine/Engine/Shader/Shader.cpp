@@ -9,9 +9,13 @@ namespace DirectxEngine
     Shader::Shader(const std::wstring& name)
         : name(name)
     {
+        // 경로 추가
+        wchar_t path[256] = { };
+        swprintf_s(path, 256, L"HLSLShader/%sVertexShader.hlsl", name.c_str());
+
         // 쉐이더 컴파일.
         HRESULT result = D3DCompileFromFile(
-            TEXT("VertexShader.hlsl"),
+            path,
             nullptr,
             nullptr,
             "main",
@@ -72,8 +76,10 @@ namespace DirectxEngine
         // 픽셀 쉐이더, 컴파일, 생성.
         // 각 리소스 바인딩.
         // 쉐이더 컴파일.
+        swprintf_s(path, 256, L"HLSLShader/%sPixelShader.hlsl", name.c_str());
+
         result = D3DCompileFromFile(
-            TEXT("PixelShader.hlsl"),
+            path,
             nullptr,
             nullptr,
             "main",
