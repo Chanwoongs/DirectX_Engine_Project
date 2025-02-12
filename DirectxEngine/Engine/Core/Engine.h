@@ -3,6 +3,7 @@
 #include <memory>
 #include <Windows.h>
 #include <string>
+#include <d3d11.h>
 
 #include "Type.h"
 
@@ -23,6 +24,10 @@ namespace DirectxEngine
 
         // 싱글톤 접근 함수.
         static Engine& Get();
+
+        // Getter.
+        ID3D11Device& Device() const;
+        ID3D11DeviceContext& Context() const;
 
     protected:
         // 창 객체.

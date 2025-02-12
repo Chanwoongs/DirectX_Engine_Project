@@ -72,4 +72,12 @@ namespace DirectxEngine
     {
         return *Instance;
     }
+    ID3D11Device& Engine::Device() const
+    {
+        return *renderer->device;
+    }
+    ID3D11DeviceContext& Engine::Context() const
+    {
+        return *renderer->context;
+    }
 }

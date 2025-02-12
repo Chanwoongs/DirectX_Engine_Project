@@ -12,6 +12,9 @@ namespace DirectxEngine
     // RHI - Render Hardware Interface.
     class Renderer
     {
+        // 엔진 클래스 friend 선언
+        friend class Engine;
+
     public:
         Renderer(uint32 width, uint32 height, HWND window);
         ~Renderer();
