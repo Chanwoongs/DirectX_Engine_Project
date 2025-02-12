@@ -5,6 +5,7 @@
 
 #include "../Math/Vector3.h"
 #include "../Shader/Shader.h"
+#include "TriangleMesh.h"
 
 namespace DirectxEngine
 {
@@ -21,16 +22,6 @@ namespace DirectxEngine
             D3D_FEATURE_LEVEL_11_1,
             D3D_FEATURE_LEVEL_11_0
         };
-
-        // 스왑 체인 정보 구조체.
-        //DXGI_MODE_DESC BufferDesc;
-        //DXGI_SAMPLE_DESC SampleDesc;
-        //DXGI_USAGE BufferUsage;
-        //UINT BufferCount;
-        //HWND OutputWindow;
-        //BOOL Windowed;
-        //DXGI_SWAP_EFFECT SwapEffect;
-        //UINT Flags;
 
         DXGI_SWAP_CHAIN_DESC swapChainDesc = { };
         swapChainDesc.Windowed = true;
@@ -98,14 +89,6 @@ namespace DirectxEngine
 
         // 뷰포트 설정.
         context->RSSetViewports(1, &viewport);
-
-        // 정점 데이터 생성
-        Vector3 vertices[] =
-        {
-            Vector3(0.0f, 0.5f, 0.5f),
-            Vector3(0.5f, -0.5f, 0.5f),
-            Vector3(-0.5f, -0.5f, 0.5f),
-        };
     }
 
     Renderer::~Renderer()
@@ -114,30 +97,19 @@ namespace DirectxEngine
 
     void Renderer::Draw()
     {
-        if (shader == nullptr)
+        // @Temp
+        if (mesh == nullptr)
         {
-            shader = std::make_unique<Shader>();
+            mesh = std::make_unique<TriangleMesh>();
         }
 
         // 그리기 전 작업 (BeginScene).
         // 지우기.
         float color[] = { 0.5f, 0.2f, 0.1f, 1.0f };
         context->ClearRenderTargetView(renderTargetView, color);
-
-        // 드로우 (Draw, Render).
-        // 리소스 바인딩.
-        // 정점 버퍼 전달.
-        static unsigned int stride = Vector3::Stride();
-        static unsigned int offset = 0;
-        context->IASetVertexBuffers(0, 1, &vertexBuffer, &stride, &offset);
-
-        shader->Bind();
-
-        // 인덱스 버퍼 전달.
-        context->IASetIndexBuffer(indexBuffer, DXGI_FORMAT_R32_UINT, 0);
-
-        // 드로우콜.
-        context->DrawIndexed(3, 0, 0);
+ 
+        // 드로우.
+        mesh->Draw();
 
         // 버퍼 교환 (EndScene, Present).
         swapChain->Present(1u, 0u);     // SyncInterval: 모니터 V-sync에 주사율 맞출 건지.

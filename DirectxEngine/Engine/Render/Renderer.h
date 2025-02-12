@@ -44,7 +44,10 @@ namespace DirectxEngine
         ID3D11Buffer* indexBuffer = nullptr;
 
         // 쉐이더 객체
-        std::unique_ptr<class Shader> shader;
+        //std::unique_ptr<class Shader> shader;
+
+        // 삼각형 메시 객체
+        std::unique_ptr<class TriangleMesh> mesh;
 
         //// 입력 레이아웃.
         //ID3D11InputLayout* inputLayout = nullptr;

@@ -5,6 +5,7 @@
 #include <memory>
 
 #include "../Core/Type.h"
+#include "../Shader/Shader.h"
 #include "Vertex.h"
 
 namespace DirectxEngine
@@ -40,8 +41,8 @@ namespace DirectxEngine
 
         virtual void Draw();
 
-    private:
+    protected:
         std::vector<std::shared_ptr<MeshData>> meshes;
-        std::vector<std::shared_ptr<class Shader>> shaders;
+        std::vector<std::shared_ptr<Shader>> shaders;
     };
 }
