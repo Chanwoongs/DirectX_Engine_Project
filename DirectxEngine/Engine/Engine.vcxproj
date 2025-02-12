@@ -87,6 +87,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math\Vector2.cpp" />
     <ClCompile Include="Math\Vector3.cpp" />
+    <ClCompile Include="Render\Mesh.cpp" />
     <ClCompile Include="Render\Renderer.cpp" />
     <ClCompile Include="Shader\Shader.cpp" />
   </ItemGroup>
@@ -96,7 +97,9 @@
     <ClInclude Include="Core\Window.h" />
     <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="Math\Vector3.h" />
+    <ClInclude Include="Render\Mesh.h" />
     <ClInclude Include="Render\Renderer.h" />
+    <ClInclude Include="Render\Vertex.h" />
     <ClInclude Include="Shader\Shader.h" />
   </ItemGroup>
   <ItemGroup>
