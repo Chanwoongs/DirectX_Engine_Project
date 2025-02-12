@@ -100,11 +100,11 @@
     <ClInclude Include="Shader\Shader.h" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="HLSLShader\PixelShader.hlsl">
+    <FxCompile Include="HLSLShader\DefaultPixelShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
     </FxCompile>
-    <FxCompile Include="HLSLShader\VertexShader.hlsl">
+    <FxCompile Include="HLSLShader\DefaultVertexShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>

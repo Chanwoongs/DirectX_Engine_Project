@@ -8,7 +8,7 @@ namespace DirectxEngine
     class Shader
     {
     public:
-        Shader(const std::wstring& name);
+        Shader(const std::wstring& name = L"Default");
         virtual ~Shader();
 
         // GPU에 Shader 객체를 연결(바인딩)

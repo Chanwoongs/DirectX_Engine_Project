@@ -4,6 +4,7 @@
 #include <d3dcompiler.h>
 
 #include "../Math/Vector3.h"
+#include "../Shader/Shader.h"
 
 namespace DirectxEngine
 {
@@ -150,6 +151,11 @@ namespace DirectxEngine
 
     void Renderer::Draw()
     {
+        if (shader == nullptr)
+        {
+            shader = std::make_unique<Shader>();
+        }
+
         // 그리기 전 작업 (BeginScene).
         // 지우기.
         float color[] = { 0.5f, 0.2f, 0.1f, 1.0f };
@@ -161,6 +167,8 @@ namespace DirectxEngine
         static unsigned int stride = Vector3::Stride();
         static unsigned int offset = 0;
         context->IASetVertexBuffers(0, 1, &vertexBuffer, &stride, &offset);
+
+        shader->Bind();
 
         // 인덱스 버퍼 전달.
         context->IASetIndexBuffer(indexBuffer, DXGI_FORMAT_R32_UINT, 0);
