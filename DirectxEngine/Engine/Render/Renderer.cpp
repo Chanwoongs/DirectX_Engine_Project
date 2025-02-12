@@ -6,6 +6,7 @@
 #include "../Math/Vector3.h"
 #include "../Shader/Shader.h"
 #include "TriangleMesh.h"
+#include "QuadMesh.h"
 
 namespace DirectxEngine
 {
@@ -103,6 +104,11 @@ namespace DirectxEngine
             mesh = std::make_unique<TriangleMesh>();
         }
 
+        if (quadMesh == nullptr)
+        {
+            quadMesh = std::make_unique<QuadMesh>();
+        }
+
         // 그리기 전 작업 (BeginScene).
         // 지우기.
         float color[] = { 0.5f, 0.2f, 0.1f, 1.0f };
@@ -110,6 +116,7 @@ namespace DirectxEngine
  
         // 드로우.
         mesh->Draw();
+        quadMesh->Draw();
 
         // 버퍼 교환 (EndScene, Present).
         swapChain->Present(1u, 0u);     // SyncInterval: 모니터 V-sync에 주사율 맞출 건지.

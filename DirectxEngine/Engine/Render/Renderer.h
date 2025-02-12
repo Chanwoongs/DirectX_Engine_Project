@@ -49,6 +49,9 @@ namespace DirectxEngine
         // 삼각형 메시 객체
         std::unique_ptr<class TriangleMesh> mesh;
 
+        // 사각형 메시 객체
+        std::unique_ptr<class QuadMesh> quadMesh;
+
         //// 입력 레이아웃.
         //ID3D11InputLayout* inputLayout = nullptr;
 
