@@ -7,8 +7,8 @@ namespace DirectxEngine
     class Vertex
     {
     public:
-        Vertex(const Vector3 position)
-            : position(position)
+        Vertex(const Vector3& position, const Vector3& color)
+            : position(position), color(color)
         {
 
         }
@@ -17,8 +17,6 @@ namespace DirectxEngine
 
     public:
         Vector3 position;
-
-    private:
-
+        Vector3 color;
     };
 }

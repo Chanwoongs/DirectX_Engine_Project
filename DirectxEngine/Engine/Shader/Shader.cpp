@@ -57,12 +57,12 @@ namespace DirectxEngine
         //UINT InstanceDataStepRate;
         D3D11_INPUT_ELEMENT_DESC inputDesc[] =
         {
-            { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0,
-            D3D11_INPUT_PER_VERTEX_DATA, 0}
+            { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
+            { "COLOR", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0}
         };
         result = device.CreateInputLayout(
             inputDesc,
-            1,
+            _countof(inputDesc),
             vertexShaderBuffer->GetBufferPointer(),
             vertexShaderBuffer->GetBufferSize(),
             &inputLayout
@@ -106,7 +106,6 @@ namespace DirectxEngine
             MessageBoxA(nullptr, "Failed to create pixel shader.", "Error", MB_OK);
             __debugbreak();
         }
-
     }
 
     Shader::~Shader()
