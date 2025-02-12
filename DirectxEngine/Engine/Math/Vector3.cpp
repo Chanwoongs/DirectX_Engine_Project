@@ -103,6 +103,15 @@ namespace DirectxEngine
     {
         return left.x * right.x + left.y * right.y + left.z * right.z;
     }
+    Vector3 Cross(const Vector3& left, const Vector3& right)
+    {
+        return Vector3
+        (
+            left.y * right.z - left.z * right.y,
+            left.z * right.x - left.x * right.z,
+            left.x * right.y - left.y * right.x
+        );
+    }
     Vector3 Lerp(const Vector3& from, const Vector3& to, float t)
     {
         // t 가두기.

@@ -49,6 +49,8 @@ namespace DirectxEngine
         // float LengthSquared();
         // 내적.
         friend float Dot(const Vector3& left, const Vector3& right);
+        // 외적.
+        friend Vector3 Cross(const Vector3& left, const Vector3& right);
         // 정규화, 내부를 건드리지 않고 정규화한 값의 복사본을 반환.
         Vector3 Normalized();
         // 같은지.
