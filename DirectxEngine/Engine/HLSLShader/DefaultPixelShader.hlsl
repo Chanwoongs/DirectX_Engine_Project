@@ -15,7 +15,7 @@ float4 main(PixelInput input) : SV_TARGET
     float4 texColor = diffuseMap.Sample(diffuseSampler, input.texCoord);
     
     float4 white = float4(1.0f, 1.0f, 1.0f, 1.0f);
-    if (all(texColor == white))
+    if (all(texColor ==  white))
     {
         return float4(input.texCoord, 0.0f, 1.0f);
     }
