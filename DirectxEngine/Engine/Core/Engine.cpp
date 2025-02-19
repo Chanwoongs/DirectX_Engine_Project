@@ -29,7 +29,7 @@ namespace DirectxEngine
 
     void Engine::Run()
     {
-
+        // 메세지 처리 루프.
         MSG msg = { };
         while (msg.message != WM_QUIT)
         {
