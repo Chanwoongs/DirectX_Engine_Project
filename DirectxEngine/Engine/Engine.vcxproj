@@ -95,6 +95,7 @@
     <ClCompile Include="Render\Texture.cpp" />
     <ClCompile Include="Render\TriangleMesh.cpp" />
     <ClCompile Include="Shader\Shader.cpp" />
+    <ClCompile Include="Shader\TextureMappingShader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Engine.h" />
@@ -110,6 +111,7 @@
     <ClInclude Include="Render\TriangleMesh.h" />
     <ClInclude Include="Render\Vertex.h" />
     <ClInclude Include="Shader\Shader.h" />
+    <ClInclude Include="Shader\TextureMappingShader.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="HLSLShader\DefaultPixelShader.hlsl">
