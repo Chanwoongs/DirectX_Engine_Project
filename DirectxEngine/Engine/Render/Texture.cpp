@@ -58,13 +58,82 @@ namespace DirectxEngine
         textureData = std::make_unique<TextureData>();
 
         // 이미지 파일 로드.
-        textureData->data = 
+        textureData->data =
             stbi_load(path, &textureData->width, &textureData->height, &textureData->channelCount, 0);
 
         // 예외 처리.
         if (!textureData->data)
         {
             std::cout << "Failed to load texture file: " << name << '\n';
+            __debugbreak();
+        }
+
+        // DX 리소스 생성.
+        static ID3D11Device& device = Engine::Get().Device();
+
+        // 로드한 이미지 파일 데이터를 기반으로 텍스처 리소스 생성.
+        D3D11_TEXTURE2D_DESC textureDesc = {};
+        textureDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+        textureDesc.ArraySize = 1;
+        textureDesc.MipLevels = 1;
+        textureDesc.SampleDesc.Count = 1;
+        textureDesc.SampleDesc.Quality = 0;
+        textureDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+        textureDesc.Width = textureData->width;
+        textureDesc.Height = textureData->height;
+
+        D3D11_SUBRESOURCE_DATA data = {};
+        data.pSysMem = textureData->data;
+        data.SysMemPitch = textureData->width * textureData->channelCount;
+
+        ID3D11Texture2D* texture = nullptr;
+        HRESULT result = device.CreateTexture2D(&textureDesc, &data, &texture);
+        if (FAILED(result))
+        {
+            std::cout << "Error: Failed to create texture2D\n";
+            __debugbreak();
+        }
+
+        // 셰이더 리소스 뷰 생성(셰이더에 바인딩할 리소스)
+        result = device.CreateShaderResourceView(texture, nullptr, &textureData->shaderResourceView);
+        if (FAILED(result))
+        {
+            std::cout << "Error: Failed to create ShaderResourceView\n";
+            __debugbreak();
+        }
+        
+        // 다 쓴 리소스 해제.
+        if (texture)
+        {
+            texture->Release();
+            texture = nullptr;
+        }
+
+        //// 샘플러 생성.
+        //D3D11_FILTER Filter;
+        //D3D11_TEXTURE_ADDRESS_MODE AddressU;
+        //D3D11_TEXTURE_ADDRESS_MODE AddressV;
+        //D3D11_TEXTURE_ADDRESS_MODE AddressW;
+        //FLOAT MipLODBias;
+        //UINT MaxAnisotropy;
+        //D3D11_COMPARISON_FUNC ComparisonFunc;
+        //FLOAT BorderColor[4];
+        //FLOAT MinLOD;
+        //FLOAT MaxLOD;
+        D3D11_SAMPLER_DESC sampleDesc = {};
+        sampleDesc.Filter = D3D11_FILTER_ANISOTROPIC;
+        sampleDesc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;
+        sampleDesc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;
+        sampleDesc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;
+        sampleDesc.MaxLOD = FLT_MAX;
+        sampleDesc.MinLOD = -FLT_MAX;
+        sampleDesc.MaxAnisotropy = 3;
+        sampleDesc.ComparisonFunc = D3D11_COMPARISON_ALWAYS;
+
+        result = device.CreateSamplerState(&sampleDesc, &textureData->samplerState);
+        if (FAILED(result))
+        {
+            std::cout << "Error: Failed to create samplerState\n";
             __debugbreak();
         }
     }
