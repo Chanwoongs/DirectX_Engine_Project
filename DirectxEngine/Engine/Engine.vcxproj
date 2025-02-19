@@ -92,6 +92,7 @@
     <ClCompile Include="Render\Mesh.cpp" />
     <ClCompile Include="Render\QuadMesh.cpp" />
     <ClCompile Include="Render\Renderer.cpp" />
+    <ClCompile Include="Render\Texture.cpp" />
     <ClCompile Include="Render\TriangleMesh.cpp" />
     <ClCompile Include="Shader\Shader.cpp" />
   </ItemGroup>
@@ -105,6 +106,7 @@
     <ClInclude Include="Render\Mesh.h" />
     <ClInclude Include="Render\QuadMesh.h" />
     <ClInclude Include="Render\Renderer.h" />
+    <ClInclude Include="Render\Texture.h" />
     <ClInclude Include="Render\TriangleMesh.h" />
     <ClInclude Include="Render\Vertex.h" />
     <ClInclude Include="Shader\Shader.h" />
