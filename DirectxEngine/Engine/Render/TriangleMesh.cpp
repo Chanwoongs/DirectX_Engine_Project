@@ -1,5 +1,8 @@
 ﻿#include "TriangleMesh.h"
 
+#include "Shader/DefaultShader.h"
+#include "Resource/ShaderLoader.h"
+
 namespace DirectxEngine
 {
     TriangleMesh::TriangleMesh()
@@ -16,6 +19,10 @@ namespace DirectxEngine
         std::vector<uint32> indices = { 0, 1, 2 };
 
         meshes.emplace_back(std::make_shared<MeshData>(vertices, indices));
-        shaders.emplace_back(std::make_shared<Shader>());
+        //shaders.emplace_back(std::make_shared<Shader>());
+
+        std::weak_ptr<DefaultShader> shader;
+        ShaderLoader::Get().Load<DefaultShader>(shader);
+        shaders.emplace_back(shader);
     }
 }
