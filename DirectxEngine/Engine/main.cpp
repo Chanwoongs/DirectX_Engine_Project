@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "Core/Engine.h"
+#include "Core/Common.h"
 #include "Render/Texture.h"
 
 using namespace DirectxEngine;

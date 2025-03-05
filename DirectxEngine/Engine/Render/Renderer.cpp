@@ -3,6 +3,7 @@
 #include <vector>
 #include <d3dcompiler.h>
 
+#include "Core/Common.h"
 #include "../Math/Vector3.h"
 #include "../Shader/Shader.h"
 #include "TriangleMesh.h"
@@ -37,7 +38,7 @@ namespace DirectxEngine
         swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 
         // 장치 생성.
-        HRESULT result = D3D11CreateDeviceAndSwapChain(
+        ThrowIfFailed(D3D11CreateDeviceAndSwapChain(
             nullptr,
             D3D_DRIVER_TYPE_HARDWARE,
             nullptr,
@@ -50,20 +51,13 @@ namespace DirectxEngine
             &device,
             nullptr,
             &context
-        );
-
-        // 결과 확인.
-        if (FAILED(result))
-        {
-            MessageBoxA(nullptr, "Failed to create devices.", "Error", MB_OK);
-            __debugbreak();
-        }
+        ), TEXT("Failed to create devices."));
 
         // 렌더 타겟 뷰 생성.
         // I 가 붙은건 그래픽 카드와 실제 소통하는 객체들
         ID3D11Texture2D* backBuffer = nullptr;
         //swapChain->GetBuffer(0, __uuidof(backBuffer), reinterpret_cast<void**>(&backBuffer));
-        result = swapChain->GetBuffer(0, IID_PPV_ARGS(&backBuffer));
+        auto result = swapChain->GetBuffer(0, IID_PPV_ARGS(&backBuffer));
         if (FAILED(result))
         {
             MessageBoxA(nullptr, "Failed to get back buffer.", "Error", MB_OK);
