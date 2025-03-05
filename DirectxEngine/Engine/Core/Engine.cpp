@@ -2,9 +2,12 @@
 #include "Window.h"
 #include "../Render/Renderer.h"
 
+#include "Resource/ShaderLoader.h"
+#include "Resource/TextureLoader.h"
+
 namespace DirectxEngine
 {
-    // 싱글톤 객체 초기화
+    // 싱글톤 객체 초기화.
     Engine* Engine::Instance = nullptr;
 
     Engine::Engine(
@@ -13,11 +16,17 @@ namespace DirectxEngine
         HINSTANCE hInstance
     )
     {
-        // 싱글톤 객체 값 설정
+        // 싱글톤 객체 값 설정.
         Instance = this;
 
-        // 창 객체 설정
+        // 창 객체 설정.
         window = std::make_shared<Window>(width, height, title, hInstance, WindowProc);
+
+        // 셰이더 로더 객체 생성.
+        shaderLoader = std::make_unique<ShaderLoader>();
+
+        // 텍스처 로더 객체 생성.
+        textureLoader = std::make_unique<TextureLoader>();
 
         // 렌더러 생성.
         renderer = std::make_shared<Renderer>(width, height, window->Handle());

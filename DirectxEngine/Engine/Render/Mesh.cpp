@@ -91,8 +91,13 @@ namespace DirectxEngine
         // 루프 순회하면서 바인딩 & 드로우.
         for (int i = 0; i < (int32)meshes.size(); i++)
         {
+            auto shader = shaders[i].lock();
+            if (!shader)
+            {
+                continue;
+            }
             meshes[i]->Bind();
-            shaders[i]->Bind();
+            shader->Bind();
             context.DrawIndexed(meshes[i]->IndexCount(), 0, 0);
         }
     }

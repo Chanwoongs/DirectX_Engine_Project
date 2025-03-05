@@ -109,7 +109,6 @@ namespace DirectxEngine
         context->ClearRenderTargetView(renderTargetView, color);
  
         // 드로우.
-        mesh->Draw();
         quadMesh->Draw();
 
         // 버퍼 교환 (EndScene, Present).

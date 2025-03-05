@@ -43,6 +43,7 @@ namespace DirectxEngine
 
     protected:
         std::vector<std::shared_ptr<MeshData>> meshes;
-        std::vector<std::shared_ptr<Shader>> shaders;
+        //std::vector<std::shared_ptr<Shader>> shaders;
+        std::vector<std::weak_ptr<Shader>> shaders;
     };
 }

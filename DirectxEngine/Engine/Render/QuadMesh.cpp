@@ -1,6 +1,7 @@
 ﻿#include "QuadMesh.h"
 
 #include "Shader/TextureMappingShader.h"
+#include "Resource/ShaderLoader.h"
 
 namespace DirectxEngine
 {
@@ -19,6 +20,11 @@ namespace DirectxEngine
         std::vector<uint32> indices = { 0, 1, 2, 2, 3, 0 };
 
         meshes.emplace_back(std::make_shared<MeshData>(vertices, indices));
-        shaders.emplace_back(std::make_shared<TextureMappingShader>("Jjangu.png"));
+
+        std::weak_ptr<TextureMappingShader> shader;
+        if (ShaderLoader::Get().Load<TextureMappingShader>(shader, "Jjangu.png"))
+        {
+            shaders.emplace_back(shader);
+        }
     }
 }
