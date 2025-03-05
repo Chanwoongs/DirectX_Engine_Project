@@ -57,10 +57,13 @@
     <ClCompile Include="Resource\TextureLoader.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Math\Matrix4.cpp">
+    <ClCompile Include="Math\Matrix4.h">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Shader\DefaultShader.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Matrix4.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

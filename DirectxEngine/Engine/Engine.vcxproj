@@ -88,6 +88,7 @@
     <ClCompile Include="Core\Window.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math\Matrix4.cpp" />
+    <ClCompile Include="Math\Matrix4.h" />
     <ClCompile Include="Math\Vector2.cpp" />
     <ClCompile Include="Math\Vector3.cpp" />
     <ClCompile Include="Render\Mesh.cpp" />
