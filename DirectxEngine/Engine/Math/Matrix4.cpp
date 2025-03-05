@@ -42,10 +42,10 @@ namespace DirectxEngine
         float sinAngle = std::sin(angle * DegreeToRadian);
 
         // 행렬.
-        m.m00 = 1.0f; m.m01 = 0.0f; m.m02 = 0.0f; m.m03 = 0.0f;
-        m.m10 = 0.0f; m.m11 = cosAngle; m.m12 = sinAngle; m.m13 = 0.0f;
-        m.m20 = 0.0f; m.m21 = -sinAngle; m.m22 = cosAngle; m.m23 = 0.0f;
-        m.m30 = 0.0f; m.m31 = 0.0f; m.m32 = 0.0f; m.m33 = 1.0f;
+        m.m00 = 1.0f;   m.m01 = 0.0f;       m.m02 = 0.0f;       m.m03 = 0.0f;
+        m.m10 = 0.0f;   m.m11 = cosAngle;   m.m12 = sinAngle;   m.m13 = 0.0f;
+        m.m20 = 0.0f;   m.m21 = -sinAngle;  m.m22 = cosAngle;   m.m23 = 0.0f;
+        m.m30 = 0.0f;   m.m31 = 0.0f;       m.m32 = 0.0f;       m.m33 = 1.0f;
 
         return m;
     }
@@ -60,10 +60,10 @@ namespace DirectxEngine
         float sinAngle = std::sin(angle * DegreeToRadian);
 
         // 행렬 (Y는 sin에 대해 부호를 뒤집음)
-        m.m00 = cosAngle; m.m01 = 0.0f; m.m02 = -sinAngle; m.m03 = 0.0f;
-        m.m10 = 0.0f; m.m11 = 1.0f; m.m12 = 0.0f; m.m13 = 0.0f;
-        m.m20 = sinAngle; m.m21 = 0.0f; m.m22 = cosAngle; m.m23 = 0.0f;
-        m.m30 = 0.0f; m.m31 = 0.0f; m.m32 = 0.0f; m.m33 = 1.0f;
+        m.m00 = cosAngle;   m.m01 = 0.0f;   m.m02 = -sinAngle;  m.m03 = 0.0f;
+        m.m10 = 0.0f;       m.m11 = 1.0f;   m.m12 = 0.0f;       m.m13 = 0.0f;
+        m.m20 = sinAngle;   m.m21 = 0.0f;   m.m22 = cosAngle;   m.m23 = 0.0f;
+        m.m30 = 0.0f;       m.m31 = 0.0f;   m.m32 = 0.0f;       m.m33 = 1.0f;
 
         return m;
     }
@@ -79,12 +79,34 @@ namespace DirectxEngine
         float sinAngle = std::sin(angle * DegreeToRadian);
 
         // 행렬.
-        m.m00 = cosAngle; m.m01 = sinAngle; m.m02 = 0.0f; m.m03 = 0.0f;
-        m.m10 = -sinAngle; m.m11 = cosAngle; m.m12 = 0.0f; m.m13 = 0.0f;
-        m.m20 = 0.0f; m.m21 = 0.0f; m.m22 = 1.0f; m.m23 = 0.0f;
-        m.m30 = 0.0f; m.m31 = 0.0f; m.m32 = 0.0f; m.m33 = 1.0f;
+        m.m00 = cosAngle;   m.m01 = sinAngle;   m.m02 = 0.0f;   m.m03 = 0.0f;
+        m.m10 = -sinAngle;  m.m11 = cosAngle;   m.m12 = 0.0f;   m.m13 = 0.0f;
+        m.m20 = 0.0f;       m.m21 = 0.0f;       m.m22 = 1.0f;   m.m23 = 0.0f;
+        m.m30 = 0.0f;       m.m31 = 0.0f;       m.m32 = 0.0f;   m.m33 = 1.0f;
 
         return m;
+    }
+
+    Matrix4 Matrix4::Scale(const Vector3& scale)
+    {
+        return Scale(scale.x, scale.y, scale.z);
+    }
+
+    Matrix4 Matrix4::Scale(float x, float y, float z)
+    {
+        Matrix4 m;
+
+        m.m00 = x;      m.m01 = 0.0f;   m.m02 = 0.0f;   m.m03 = 0.0f;
+        m.m10 = 0.0f;   m.m11 = y;      m.m12 = 0.0f;   m.m13 = 0.0f;
+        m.m20 = 0.0f;   m.m21 = 0.0f;   m.m22 = z;      m.m23 = 0.0f;
+        m.m30 = 0.0f;   m.m31 = 0.0f;   m.m32 = 0.0f;   m.m33 = 1.0f;
+
+        return m;
+    }
+
+    Matrix4 Matrix4::Scale(float scale)
+    {
+        return Scale(scale, scale, scale);
     }
 
     Matrix4& Matrix4::operator=(const Matrix4& other)

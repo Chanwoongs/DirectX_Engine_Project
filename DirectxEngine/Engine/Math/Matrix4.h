@@ -21,6 +21,10 @@ namespace DirectxEngine
         static Matrix4 RotationY(float angle);
         static Matrix4 RotationZ(float angle);
 
+        static Matrix4 Scale(const Vector3& scale);
+        static Matrix4 Scale(float x, float y, float z);
+        static Matrix4 Scale(float scale);
+           
         // operator overloading.
         Matrix4& operator=(const Matrix4& other);
         Matrix4 operator*(const Matrix4& other);
