@@ -27,6 +27,9 @@ namespace DirectxEngine
         static Matrix4 Scale(const Vector3& scale);
         static Matrix4 Scale(float x, float y, float z);
         static Matrix4 Scale(float scale);
+
+        // 전치 행렬.
+        static Matrix4 Transpose(const Matrix4& target);
            
         // operator overloading.
         Matrix4& operator=(const Matrix4& other);

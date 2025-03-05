@@ -126,6 +126,21 @@ namespace DirectxEngine
         return Scale(scale, scale, scale);
     }
 
+    Matrix4 Matrix4::Transpose(const Matrix4& target)
+    {
+        Matrix4 m;
+
+        std::swap(m.m01, m.m10);
+        std::swap(m.m02, m.m20);
+        std::swap(m.m03, m.m30);
+
+        std::swap(m.m12, m.m21);
+        std::swap(m.m13, m.m31);
+        std::swap(m.m23, m.m32);
+
+        return m;
+    }
+
     Matrix4& Matrix4::operator=(const Matrix4& other)
     {
         memcpy_s(elements, sizeof(float) * 16, other.elements, sizeof(float) * 16);
