@@ -29,13 +29,13 @@ namespace DirectxEngine
         swapChainDesc.Windowed = true;
         swapChainDesc.OutputWindow = window;
         swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-        swapChainDesc.BufferCount = 1;          // 백퍼버 개수.
+        swapChainDesc.BufferCount = 2;          // 백퍼버 개수.
         swapChainDesc.SampleDesc.Count = 1;     // 멀티 샘플링 개수.
         swapChainDesc.SampleDesc.Quality = 0;   // 멀티 샘플링 수준.
         swapChainDesc.BufferDesc.Width = width;
         swapChainDesc.BufferDesc.Height = height;
         swapChainDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-        swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
+        swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
 
         // 장치 생성.
         ThrowIfFailed(D3D11CreateDeviceAndSwapChain(
@@ -104,6 +104,8 @@ namespace DirectxEngine
         }
 
         // 그리기 전 작업 (BeginScene).
+        context->OMSetRenderTargets(1, &renderTargetView, nullptr);
+
         // 지우기.
         float color[] = { 0.5f, 0.2f, 0.1f, 1.0f };
         context->ClearRenderTargetView(renderTargetView, color);
