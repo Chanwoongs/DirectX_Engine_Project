@@ -15,6 +15,9 @@ namespace DirectxEngine
         // 메모리 너비(단위: 바이트).
         static uint32 Stride() { return sizeof(Matrix4); }
 
+        static Matrix4 Translation(const Vector3& position);
+        static Matrix4 Translation(float x, float y, float z);
+
         static Matrix4 Rotation(const Vector3& rotation);
         static Matrix4 Rotation(float x, float y, float z);
         static Matrix4 RotationX(float angle);
