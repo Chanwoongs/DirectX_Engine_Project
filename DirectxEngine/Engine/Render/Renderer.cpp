@@ -110,6 +110,9 @@ namespace DirectxEngine
         float color[] = { 0.5f, 0.2f, 0.1f, 1.0f };
         context->ClearRenderTargetView(renderTargetView, color);
  
+        // @Test.
+        quadMesh->Update(1.0f / 60.0f);
+
         // 드로우.
         quadMesh->Draw();
 
