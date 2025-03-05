@@ -16,6 +16,7 @@ namespace DirectxEngine
 
     private:
         // 텍스처 리소스.
-        std::unique_ptr<class Texture> texture;
+        //std::unique_ptr<class Texture> texture;
+        std::weak_ptr<class Texture> texture;
     };
 }
