@@ -7,12 +7,12 @@
 namespace DirectxEngine
 {
     TextureMappingShader::TextureMappingShader()
-        : Shader(L"Default")
+        : Shader(L"TextureMapping")
     {
 
     }
     TextureMappingShader::TextureMappingShader(const std::string& textureName)
-        : Shader(L"Default")
+        : Shader(L"TextureMapping")
     {
         // 텍스처 생성.
         texture = std::make_unique<Texture>(textureName);

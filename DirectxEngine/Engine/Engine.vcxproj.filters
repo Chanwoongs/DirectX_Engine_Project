@@ -99,5 +99,7 @@
   <ItemGroup>
     <FxCompile Include="HLSLShader\DefaultVertexShader.hlsl" />
     <FxCompile Include="HLSLShader\DefaultPixelShader.hlsl" />
+    <FxCompile Include="HLSLShader\TextureMappingPixelShader.hlsl" />
+    <FxCompile Include="HLSLShader\TextureMappingVertexShader.hlsl" />
   </ItemGroup>
 </Project>
