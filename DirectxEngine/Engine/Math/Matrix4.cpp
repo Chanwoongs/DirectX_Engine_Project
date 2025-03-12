@@ -182,6 +182,7 @@ namespace DirectxEngine
         return *this;
     }
 
+
     Vector3 operator*(const Matrix4& matrix, const Vector3& vector)
     {
         return vector * matrix;

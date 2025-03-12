@@ -123,6 +123,9 @@ namespace DirectxEngine
         // 컨텍스트 얻어오기.
         static auto& context = Engine::Get().Context();
 
+        // 트랜스폼 바인딩.
+        transfrom.Bind();
+
         // 루프 순회하면서 바인딩 & 드로우.
         for (int i = 0; i < (int32)meshes.size(); i++)
         {

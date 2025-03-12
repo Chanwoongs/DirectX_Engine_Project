@@ -7,6 +7,7 @@
 #include "../Core/Type.h"
 #include "../Shader/Shader.h"
 #include "Vertex.h"
+#include "Math/Transform.h"
 
 namespace DirectxEngine
 {
@@ -43,6 +44,10 @@ namespace DirectxEngine
         virtual ~Mesh() = default;
 
         virtual void Draw();
+
+    public:
+        // @Temp: 임시 트랜스폼.
+        Transform transfrom;
 
     protected:
         std::vector<std::shared_ptr<MeshData>> meshes;
